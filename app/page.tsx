@@ -1,4 +1,3 @@
-import Header from "@/app/(home)/_components/header";
 import { Box } from "@yamada-ui/react";
 
 export default function Home() {
