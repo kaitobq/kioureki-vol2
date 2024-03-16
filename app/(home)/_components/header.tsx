@@ -16,15 +16,15 @@ const Header = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text color="white" fontSize={30} mx={20}>
+      <Text color="white" fontSize={30} mx={5}>
         既往歴
       </Text>
       <Box
-        width={110}
+        width={140}
         display="flex"
         flexDirection="row"
         alignItems="center"
-        mx={20}
+        mx={5}
         justifyContent="space-between"
       >
         <Button
