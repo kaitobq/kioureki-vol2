@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import { UIProvider } from "@yamada-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ margin: 0 }} className={inter.className}>
-        <UIProvider>{children}</UIProvider>
+        <ClerkProvider>
+          <UIProvider>{children}</UIProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
