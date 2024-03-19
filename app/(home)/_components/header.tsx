@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton, useClerk } from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton, useClerk } from "@clerk/nextjs";
 import { Box, Button } from "@yamada-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -24,18 +24,32 @@ const Header = () => {
         既往歴
       </Link>
       <Box
-        width={140}
         display="flex"
         flexDirection="row"
         alignItems="center"
         mx={5}
         justifyContent="space-between"
       >
+        <OrganizationSwitcher
+          hidePersonal
+          // afterCreateOrganizationUrl="/organization/:id"
+          // afterLeaveOrganizationUrl="/select-org"
+          // afterSelectOrganizationUrl="/organization/:id"
+          appearance={{
+            elements: {
+              rootBox: {
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              },
+            },
+          }}
+        />
         <Button
           onClick={() => signOut(() => router.push("/"))}
           variant="outline"
           color="white"
-          sx={{ "&:hover": { color: "black" }, transition: "0.3s" }}
+          sx={{ mx: 5, "&:hover": { color: "black" }, transition: "0.3s" }}
         >
           sign out
         </Button>
