@@ -31,14 +31,14 @@ const Header = () => {
         mx={5}
         justifyContent="space-between"
       >
-        <Button
+        {/* <Button
           onClick={() => signOut(() => router.push("/"))}
           variant="outline"
           color="white"
           sx={{ "&:hover": { color: "black" }, transition: "0.3s" }}
         >
           sign out
-        </Button>
+        </Button> */}
         <UserButton afterSignOutUrl="/" />
       </Box>
     </Box>
