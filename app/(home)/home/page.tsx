@@ -22,7 +22,10 @@ const page = () => {
   }
   return (
     <Box>
-      <OrganizationList hidePersonal />
+      <OrganizationList
+        hidePersonal
+        afterSelectOrganizationUrl="/organization/organizationid"
+      />
       <ul>
         {memberships.data?.map((membership) => (
           <li key={membership.id}>
