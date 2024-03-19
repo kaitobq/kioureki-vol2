@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton, useClerk } from "@clerk/nextjs";
-import { Box, Button, Text } from "@yamada-ui/react";
+import { Box, Button } from "@yamada-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -17,9 +17,6 @@ const Header = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {/* <Text color="white" fontSize={30} mx={5}>
-        既往歴
-      </Text> */}
       <Link
         href="/home"
         style={{ fontSize: 25, marginLeft: 15, color: "white" }}
