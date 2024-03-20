@@ -1,7 +1,7 @@
 "use client";
 
 import { OrganizationList, useOrganization } from "@clerk/nextjs";
-import { Box } from "@yamada-ui/react";
+import { Box, Container } from "@yamada-ui/react";
 
 const page = () => {
   const { invitations } = useOrganization({
@@ -21,12 +21,19 @@ const page = () => {
     return null;
   }
   return (
-    <Box>
-      <OrganizationList
-        hidePersonal
-        afterSelectOrganizationUrl="/organization/organizationid"
-      />
-      <ul>
+    <Box
+      height="90vh"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Container width="fit-content">
+        <OrganizationList
+          hidePersonal
+          afterSelectOrganizationUrl="/organization/organizationid"
+        />
+      </Container>
+      {/* <ul>
         {memberships.data?.map((membership) => (
           <li key={membership.id}>
             {membership.publicUserData.firstName}{" "}
@@ -34,7 +41,7 @@ const page = () => {
             {membership.publicUserData.identifier}&gt; :: {membership.role}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </Box>
   );
 };
