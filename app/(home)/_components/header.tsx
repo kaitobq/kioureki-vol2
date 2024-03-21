@@ -30,6 +30,7 @@ const Header = () => {
         mx={5}
         justifyContent="space-between"
       >
+        {/* organizationがないときは非表示にしたい */}
         <OrganizationSwitcher
           hidePersonal
           // afterCreateOrganizationUrl="/organization/:id"
