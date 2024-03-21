@@ -21,16 +21,28 @@ const page = () => {
   const columns = useMemo<Column<any>[]>(
     () => [
       {
-        header: "作品名",
+        header: "名前",
         accessorKey: "name",
       },
       {
-        header: "放送期間",
-        accessorKey: "broadcastPeriod",
+        header: "受傷部位",
+        accessorKey: "part",
       },
       {
-        header: "話数",
-        accessorKey: "episode",
+        header: "診断",
+        accessorKey: "diagnosis",
+      },
+      {
+        header: "カテゴリ",
+        accessorKey: "category",
+      },
+      {
+        header: "備考",
+        accessorKey: "memo",
+      },
+      {
+        header: "日付",
+        accessorKey: "date",
       },
     ],
     []
@@ -39,29 +51,44 @@ const page = () => {
   const data = useMemo<any[]>(
     () => [
       {
-        name: "ドラゴンボール",
-        broadcastPeriod: "1986年2月26日 - 1989年4月19日",
-        episode: "全153話",
+        name: "player1",
+        part: "test",
+        diagnosis: "testtest",
+        category: "test",
+        memo: "test",
+        date: "test",
       },
       {
-        name: "ドラゴンボールZ",
-        broadcastPeriod: "1989年4月26日 - 1996年1月31日",
-        episode: "全291話 + スペシャル2話",
+        name: "player5",
+        part: "test",
+        diagnosis: "testtest",
+        category: "test",
+        memo: "test",
+        date: "test",
       },
       {
-        name: "ドラゴンボールGT",
-        broadcastPeriod: "1996年2月7日 - 1997年11月19日",
-        episode: "全64話 + 番外編1話",
+        name: "player3",
+        part: "test",
+        diagnosis: "testtest",
+        category: "test",
+        memo: "test",
+        date: "test",
       },
       {
-        name: "ドラゴンボール改",
-        broadcastPeriod: "2009年4月5日 - 2015年6月28日",
-        episode: "全159話",
+        name: "player4",
+        part: "test",
+        diagnosis: "testtest",
+        category: "test",
+        memo: "test",
+        date: "test",
       },
       {
-        name: "ドラゴンボール超",
-        broadcastPeriod: "2015年7月5日 - 2018年3月25日",
-        episode: "全131話",
+        name: "player2",
+        part: "test",
+        diagnosis: "testtest",
+        category: "test",
+        memo: "test",
+        date: "test",
       },
     ],
     []
