@@ -2,7 +2,13 @@
 
 import { fetchDatabase } from "@/lib/supabaseFunctions";
 import { CreateOrganization, useOrganization } from "@clerk/nextjs";
-import { Box, Button, Container } from "@yamada-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  useDisclosure,
+} from "@yamada-ui/react";
 import { Column, Table } from "@yamada-ui/table";
 import { useEffect, useMemo, useState } from "react";
 import { FaRegSquarePlus } from "react-icons/fa6";
@@ -10,6 +16,7 @@ import { FaRegSquarePlus } from "react-icons/fa6";
 const page = () => {
   const { organization } = useOrganization();
   const [data, setData] = useState<any[]>([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const loadData = async () => {
@@ -76,10 +83,21 @@ const page = () => {
       justifyContent="center"
     >
       <Container pb={0}>
-        <Button p={0} width={10} height={10} bgColor="white">
+        <Button onClick={onOpen} p={0} width={10} height={10} bgColor="white">
           <FaRegSquarePlus color="#5b5b5b" size={20} />
         </Button>
       </Container>
+      <Dialog
+        isOpen={isOpen}
+        onClose={onClose}
+        header="データ追加"
+        cancel="閉じる"
+        onCancel={onClose}
+        success="追加"
+        onSuccess={onClose}
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, in?
+      </Dialog>
       <Container pt={0}>
         <Table columns={columns} data={data} />
       </Container>
