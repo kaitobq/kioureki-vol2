@@ -1,11 +1,11 @@
 "use client";
 
 import { fetchDatabase } from "@/lib/supabaseFunctions";
-import { useOrganization } from "@clerk/nextjs";
-import { Box, Container } from "@yamada-ui/react";
+import { CreateOrganization, useOrganization } from "@clerk/nextjs";
+import { Box, Button, Container } from "@yamada-ui/react";
 import { Column, Table } from "@yamada-ui/table";
 import { useEffect, useMemo, useState } from "react";
-import CreateOrganizationDialog from "../_components/createOrganizationDialog";
+import { FaRegSquarePlus } from "react-icons/fa6";
 
 const page = () => {
   const { organization } = useOrganization();
@@ -20,7 +20,7 @@ const page = () => {
     loadData();
   }, []);
 
-  console.log(organization);
+  console.log(organization?.id);
 
   const columns = useMemo<Column<any>[]>(
     () => [
@@ -61,7 +61,8 @@ const page = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <CreateOrganizationDialog />
+        {/* <CreateOrganizationDialog /> */}
+        <CreateOrganization />
       </Box>
     );
   }
@@ -70,10 +71,16 @@ const page = () => {
     <Box
       height="90vh"
       display="flex"
+      flexDirection="column"
       alignItems="center"
       justifyContent="center"
     >
-      <Container>
+      <Container pb={0}>
+        <Button p={0} width={10} height={10} bgColor="white">
+          <FaRegSquarePlus color="#5b5b5b" size={20} />
+        </Button>
+      </Container>
+      <Container pt={0}>
         <Table columns={columns} data={data} />
       </Container>
     </Box>
