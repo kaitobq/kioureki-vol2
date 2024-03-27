@@ -1,9 +1,22 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { Box, Button, Text } from "@yamada-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    // クライアントサイドでのみ実行
+    if (!isSignedIn) {
+      router.push("/home");
+    }
+  }, [isSignedIn]);
+
   return (
     <>
       <Box
