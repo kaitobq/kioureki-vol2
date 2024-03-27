@@ -11,7 +11,6 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // クライアントサイドでのみ実行
     if (!isSignedIn) {
       router.push("/home");
     }
