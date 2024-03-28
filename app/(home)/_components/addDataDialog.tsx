@@ -27,6 +27,12 @@ const AddDataDialog = (props: Props) => {
       alert("全ての必須フィールドを入力してください。");
       return;
     }
+
+    if (typeof props.organizationId === "undefined") {
+      console.error("organizationId is undefined.");
+      return;
+    }
+
     try {
       await addDataToDatabase("Injuries", props.organizationId, {
         name,
@@ -100,7 +106,9 @@ const AddDataDialog = (props: Props) => {
           <DatePicker
             defaultValue={date}
             parseDate={(value) => {
-              setDate(new Date(value));
+              const newDate = new Date(value);
+              setDate(newDate);
+              return newDate;
             }}
           />
         </FormControl>
