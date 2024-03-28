@@ -5,13 +5,18 @@ import { Box, Button, Text } from "@yamada-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import LoadingPage from "../loading";
 
 export default function Home() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
 
+  if (!isLoaded) {
+    return <LoadingPage />;
+  }
+
   useEffect(() => {
-    if (!isSignedIn) {
+    if (isSignedIn) {
       router.push("/home");
     }
   }, [isSignedIn]);
