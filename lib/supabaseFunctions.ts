@@ -26,7 +26,7 @@ export const addDataToDatabase = async (
       ...newData,
       organizationId: organizationId,
     };
-
+    console.log(newData.date);
     await supabase.from(tableName).insert([dataWithOrganizationId]);
   } catch (error) {
     console.error("データ追加エラー:", error);
