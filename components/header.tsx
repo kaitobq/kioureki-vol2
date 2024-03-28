@@ -6,9 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const { signOut } = useClerk();
-  const router = useRouter();
-
   return (
     <Box
       height="10vh"
@@ -17,10 +14,7 @@ const Header = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Link
-        href="/home"
-        style={{ fontSize: 25, marginLeft: 15, color: "white" }}
-      >
+      <Link href="/" style={{ fontSize: 25, marginLeft: 15, color: "white" }}>
         既往歴
       </Link>
     </Box>
