@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
     "@supabase/supabase-js": "^2.39.8",
+    "@yamada-ui/calendar": "^1.2.4",
     "@yamada-ui/react": "^1.2.9",
     "@yamada-ui/table": "^1.0.21",
     "next": "^14.1.4",
