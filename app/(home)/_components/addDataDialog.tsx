@@ -18,7 +18,7 @@ const AddDataDialog = (props: Props) => {
   const [diagnosis, setDiagnosis] = useState("");
   const [category, setCategory] = useState("");
   const [memo, setMemo] = useState("");
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   const handleSubmit = async (e: any) => {
     // e.preventDefault(); // フォームのデフォルト送信を防ぐ
@@ -32,7 +32,7 @@ const AddDataDialog = (props: Props) => {
       console.error("organizationId is undefined.");
       return;
     }
-
+    date?.setDate(date.getDate() + 1);
     try {
       await addDataToDatabase("Injuries", props.organizationId, {
         name,
@@ -104,11 +104,18 @@ const AddDataDialog = (props: Props) => {
         </FormControl>
         <FormControl label="Date" isRequired>
           <DatePicker
-            defaultValue={date}
-            parseDate={(value) => {
-              const newDate = new Date(value);
-              setDate(newDate);
-              return newDate;
+            // defaultValue={date}
+            value={date}
+            placement="top"
+            // parseDate={(value) => {
+            //   const newDate = new Date(value);
+            //   console.log(value, "!");
+            //   setDate(newDate);
+            //   return newDate;
+            // }}
+            onChange={setDate}
+            onClick={() => {
+              console.log(date);
             }}
           />
         </FormControl>
