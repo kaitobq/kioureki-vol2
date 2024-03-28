@@ -1,9 +1,7 @@
 "use client";
 
-import { UserButton, useClerk } from "@clerk/nextjs";
-import { Box, Button, Text } from "@yamada-ui/react";
+import { Box } from "@yamada-ui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const Header = () => {
   return (
