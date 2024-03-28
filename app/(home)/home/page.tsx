@@ -111,7 +111,9 @@ const Page = () => {
                 <Td style={{ ...tdStyle }}>{row.diagnosis}</Td>
                 <Td style={{ ...tdStyle }}>{row.category}</Td>
                 <Td style={{ ...memoStyle }}>{row.memo}</Td>
-                <Td style={{ ...tdStyle }}>{row.date}</Td>
+                <Td style={{ ...tdStyle }}>
+                  {new Date(row.date).toLocaleDateString()}
+                </Td>
                 <Td>
                   <Button
                     style={{
@@ -148,14 +150,14 @@ const Page = () => {
 
 export default Page;
 
-const tdStyle = {
+const tdStyle: React.CSSProperties = {
   padding: "10px",
   border: "1px solid #ddd",
   fontSize: 15,
   verticalAlign: "middle",
 };
 
-const memoStyle = {
+const memoStyle: React.CSSProperties = {
   ...tdStyle, // tdStyleのスタイルを継承
   maxWidth: 500, // 最大幅を設定
   whiteSpace: "normal", // テキストを折り返す
