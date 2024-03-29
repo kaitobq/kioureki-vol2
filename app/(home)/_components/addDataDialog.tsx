@@ -1,6 +1,6 @@
 "use client";
 
-import { addDataToDatabase, fetchDatabase } from "@/lib/supabaseFunctions";
+import { addData } from "@/lib/supabaseFunctions";
 import { DatePicker } from "@yamada-ui/calendar";
 import { Dialog, FormControl, Input, Textarea, VStack } from "@yamada-ui/react";
 import { useState } from "react";
@@ -32,7 +32,7 @@ const AddDataDialog = (props: Props) => {
     }
     date?.setDate(date.getDate() + 1);
     try {
-      await addDataToDatabase("Injuries", props.organizationId, {
+      await addData("Injuries", props.organizationId, {
         name,
         part,
         diagnosis,

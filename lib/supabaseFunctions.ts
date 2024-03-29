@@ -1,9 +1,6 @@
 import supabase from "./supabase";
 
-export const fetchDatabase = async (
-  tableName: string,
-  organizationId: string
-) => {
+export const fetchData = async (tableName: string, organizationId: string) => {
   try {
     const { data } = await supabase
       .from(tableName)
@@ -16,7 +13,7 @@ export const fetchDatabase = async (
   }
 };
 
-export const addDataToDatabase = async (
+export const addData = async (
   tableName: string,
   organizationId: string,
   newData: object
@@ -34,7 +31,19 @@ export const addDataToDatabase = async (
   }
 };
 
-export const removeSupabaseData = async (tableName: string, dataId: string) => {
+export const updateData = async (
+  tableName: string,
+  dataId: string,
+  newData: object
+) => {
+  const { data, error } = await supabase
+    .from("Injuries")
+    .update({ other_column: "otherValue" })
+    .eq("some_column", "someValue")
+    .select();
+};
+
+export const removeData = async (tableName: string, dataId: string) => {
   try {
     await supabase.from(tableName).delete().eq("id", dataId); // 指定したIDの行を削除
   } catch (error) {

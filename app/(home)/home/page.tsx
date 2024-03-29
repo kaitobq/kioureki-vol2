@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchDatabase, removeSupabaseData } from "@/lib/supabaseFunctions";
+import { fetchData, removeData } from "@/lib/supabaseFunctions";
 import { useOrganization } from "@clerk/nextjs";
 import {
   Box,
@@ -30,7 +30,7 @@ const HomePage = () => {
 
   const loadData = async () => {
     if (organization?.id) {
-      const fetchedData = await fetchDatabase("Injuries", organization.id);
+      const fetchedData = await fetchData("Injuries", organization.id);
       setData(fetchedData ?? []);
       setLoading(false);
     }
@@ -42,7 +42,7 @@ const HomePage = () => {
 
   const handleRemove = async (id: string) => {
     try {
-      await removeSupabaseData("Injuries", id);
+      await removeData("Injuries", id);
       loadData();
     } catch (error) {
       console.error("データ削除エラー:", error);
