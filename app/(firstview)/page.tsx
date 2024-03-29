@@ -11,15 +11,17 @@ export default function Home() {
   const { isSignedIn, isLoaded } = useUser();
   const router = useRouter();
 
-  if (!isLoaded) {
-    return <LoadingPage />;
-  }
-
   useEffect(() => {
+    if (!isLoaded) return;
+
     if (isSignedIn) {
       router.push("/home");
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, isLoaded]);
+
+  if (!isLoaded) {
+    return <LoadingPage />;
+  }
 
   return (
     <>
