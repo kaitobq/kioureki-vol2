@@ -21,6 +21,8 @@ import AddDataDialog from "../_components/addDataDialog";
 import LoadingPage from "@/app/loading";
 import { injuryData } from "@/types/injuryData";
 import UpdateDataDialog from "../_components/updateDataDialog";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
 const HomePage = () => {
   const { organization } = useOrganization();
@@ -146,29 +148,27 @@ const HomePage = () => {
                 <Td>
                   <Button
                     style={{
-                      backgroundColor: "#6064df",
-                      color: "white",
+                      backgroundColor: "transparent",
                       padding: "5px 10px",
                     }}
                     onClick={() => {
                       handleUpdate(row);
                     }}
                   >
-                    修正
+                    <FaEdit color="#6064df" size={20} />
                   </Button>
                 </Td>
                 <Td>
                   <Button
                     style={{
-                      backgroundColor: "#6064df",
-                      color: "white",
+                      backgroundColor: "transparent",
                       padding: "5px 10px",
                     }}
                     onClick={() => {
                       handleRemove(row.id);
                     }}
                   >
-                    削除
+                    <MdDeleteForever color="#6064df" size={25} />
                   </Button>
                 </Td>
               </Tr>
