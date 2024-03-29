@@ -1,4 +1,3 @@
-import { injuryData } from "@/types/injuryData";
 import supabase from "./supabase";
 
 export const fetchData = async (tableName: string, organizationId: string) => {
@@ -35,7 +34,14 @@ export const addData = async (
 export const updateData = async (
   tableName: string,
   dataId: string,
-  newData: injuryData
+  newData: {
+    name: string;
+    part: string;
+    diagnosis: string;
+    category: string;
+    memo: string;
+    date: Date;
+  }
 ) => {
   const { data, error } = await supabase
     .from(tableName)

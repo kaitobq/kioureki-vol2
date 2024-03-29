@@ -1,6 +1,5 @@
 import { Dialog, FormControl, Input, Textarea, VStack } from "@yamada-ui/react";
 import { DatePicker } from "@yamada-ui/calendar";
-import { injuryData } from "@/types/injuryData";
 import { useEffect, useState } from "react";
 import { updateData } from "@/lib/supabaseFunctions";
 
