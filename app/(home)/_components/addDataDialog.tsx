@@ -21,7 +21,7 @@ const AddDataDialog = (props: Props) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   const handleSubmit = async (e: any) => {
-    if (name === "" || part === "" || diagnosis === "" || category === "") {
+    if (!name || !part || !category || !date) {
       alert("全ての必須フィールドを入力してください。");
       return;
     }
