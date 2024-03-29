@@ -1,5 +1,5 @@
 export type injuryData = {
-  id: string;
+  // id: string;
   name: string;
   part: string;
   diagnosis: string;

@@ -8,7 +8,15 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   reloadData: any;
-  prevData: injuryData | null;
+  prevData: {
+    id: string;
+    name: string;
+    part: string;
+    diagnosis: string;
+    category: string;
+    memo: string;
+    date: Date;
+  } | null;
 };
 
 const UpdateDataDialog = (props: Props) => {

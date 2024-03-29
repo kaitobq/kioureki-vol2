@@ -20,10 +20,20 @@ import {
 import { FaPlusCircle } from "react-icons/fa";
 import AddDataDialog from "../_components/addDataDialog";
 import LoadingPage from "@/app/loading";
-import { injuryData } from "@/types/injuryData";
+// import { injuryData } from "@/types/injuryData";
 import UpdateDataDialog from "../_components/updateDataDialog";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+
+type injuryData = {
+  id: string;
+  name: string;
+  part: string;
+  diagnosis: string;
+  category: string;
+  memo: string;
+  date: Date;
+};
 
 const HomePage = () => {
   const { organization } = useOrganization();
