@@ -1,3 +1,4 @@
+import { injuryData } from "@/types/injuryData";
 import supabase from "./supabase";
 
 export const fetchData = async (tableName: string, organizationId: string) => {
@@ -34,13 +35,27 @@ export const addData = async (
 export const updateData = async (
   tableName: string,
   dataId: string,
-  newData: object
+  newData: injuryData
 ) => {
   const { data, error } = await supabase
-    .from("Injuries")
-    .update({ other_column: "otherValue" })
-    .eq("some_column", "someValue")
-    .select();
+    .from(tableName)
+    .update({
+      name: newData.name,
+      part: newData.part,
+      diagnosis: newData.diagnosis,
+      category: newData.category,
+      memo: newData.memo,
+      date: newData.date,
+    })
+    .eq("id", dataId);
+
+  if (error) {
+    console.error("データ更新エラー:", error);
+    return null;
+  }
+
+  console.log("更新成功:", data);
+  return data;
 };
 
 export const removeData = async (tableName: string, dataId: string) => {
