@@ -20,6 +20,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import AddDataDialog from "../_components/addDataDialog";
 import LoadingPage from "@/app/loading";
 import { injuryData } from "@/types/injuryData";
+import UpdateDataDialog from "../_components/updateDataDialog";
 
 const HomePage = () => {
   const { organization } = useOrganization();
@@ -27,6 +28,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRow, setSelectedRow] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false);
+  const [editingData, setEditingData] = useState<injuryData | null>(null);
 
   const loadData = async () => {
     if (organization?.id) {
@@ -39,6 +42,11 @@ const HomePage = () => {
   useEffect(() => {
     loadData();
   }, [organization]);
+
+  const handleUpdate = (row: injuryData) => {
+    setEditingData(row);
+    setIsUpdateDialogOpen(true);
+  };
 
   const handleRemove = async (id: string) => {
     try {
@@ -91,6 +99,13 @@ const HomePage = () => {
         reloadData={loadData}
       />
 
+      <UpdateDataDialog
+        isOpen={isUpdateDialogOpen}
+        onClose={() => setIsUpdateDialogOpen(false)}
+        prevData={editingData}
+        reloadData={loadData}
+      />
+
       <TableContainer mb={20} px={10}>
         <NativeTable>
           <Thead>
@@ -101,7 +116,8 @@ const HomePage = () => {
               <Th textAlign="center">カテゴリ</Th>
               <Th textAlign="center">備考</Th>
               <Th textAlign="center">日付</Th>
-              <Th textAlign="center">操作</Th>
+              <Th textAlign="center">修正</Th>
+              <Th textAlign="center">削除</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -135,6 +151,20 @@ const HomePage = () => {
                       padding: "5px 10px",
                     }}
                     onClick={() => {
+                      handleUpdate(row);
+                    }}
+                  >
+                    修正
+                  </Button>
+                </Td>
+                <Td>
+                  <Button
+                    style={{
+                      backgroundColor: "#6064df",
+                      color: "white",
+                      padding: "5px 10px",
+                    }}
+                    onClick={() => {
                       handleRemove(row.id);
                     }}
                   >
@@ -152,7 +182,8 @@ const HomePage = () => {
               <Th textAlign="center">カテゴリ</Th>
               <Th textAlign="center">備考</Th>
               <Th textAlign="center">日付</Th>
-              <Th textAlign="center">操作</Th>
+              <Th textAlign="center">修正</Th>
+              <Th textAlign="center">削除</Th>
             </Tr>
           </Tfoot>
         </NativeTable>
