@@ -30,7 +30,7 @@ const AddDataDialog = (props: Props) => {
       console.error("organizationId is undefined.");
       return;
     }
-    // date?.setDate(date.getDate() + 1);
+    date?.setDate(date.getDate() + 1);
     try {
       await addData("Injuries", props.organizationId, {
         name,

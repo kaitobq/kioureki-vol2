@@ -35,7 +35,7 @@ const UpdateDataDialog = (props: Props) => {
       alert("全ての必須フィールドを入力してください。");
       return;
     }
-
+    date?.setDate(date.getDate() + 1);
     try {
       await updateData("Injuries", props.prevData?.id, {
         name,
