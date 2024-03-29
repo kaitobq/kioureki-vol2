@@ -16,19 +16,18 @@ import {
   Td,
   useDisclosure,
 } from "@yamada-ui/react";
-import { FaRegSquarePlus } from "react-icons/fa6";
+import { FaPlusCircle } from "react-icons/fa";
 import AddDataDialog from "../_components/addDataDialog";
 import LoadingPage from "@/app/loading";
 import { injuryData } from "@/types/injuryData";
 
-const Page = () => {
+const HomePage = () => {
   const { organization } = useOrganization();
   const [data, setData] = useState<injuryData[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRow, setSelectedRow] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // データを取得する関数
   const loadData = async () => {
     if (organization?.id) {
       const fetchedData = await fetchDatabase("Injuries", organization.id);
@@ -37,16 +36,14 @@ const Page = () => {
     }
   };
 
-  // 初期ロード時にデータを取得
   useEffect(() => {
     loadData();
   }, [organization]);
 
-  // データ削除関数
   const handleRemove = async (id: string) => {
     try {
       await removeSupabaseData("Injuries", id);
-      loadData(); // データの削除後にデータを再取得
+      loadData();
     } catch (error) {
       console.error("データ削除エラー:", error);
     }
@@ -67,18 +64,34 @@ const Page = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Button onClick={onOpen} p={0} bgColor="white">
-        <FaRegSquarePlus color="#5b5b5b" size={20} />
-      </Button>
+      <Box width="100%" px={10} display="flex" justifyContent="flex-end">
+        <Button
+          onClick={onOpen}
+          mt={5}
+          p={3}
+          variant="outline"
+          bgColor="#6064df"
+          color="white"
+          borderRadius="8px"
+          _hover={{ bgColor: "white", textColor: "black" }}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          gap={2}
+        >
+          <FaPlusCircle size="20px" />
+          新しいデータを追加
+        </Button>
+      </Box>
 
       <AddDataDialog
         isOpen={isOpen}
         onClose={onClose}
         organizationId={organization?.id}
-        reloadData={loadData} // データ追加後に再取得するための関数を渡す
+        reloadData={loadData}
       />
 
-      <TableContainer px={10}>
+      <TableContainer mb={20} px={10}>
         <NativeTable>
           <Thead>
             <Tr>
@@ -99,9 +112,9 @@ const Page = () => {
                 style={{
                   background:
                     selectedRow === row.id
-                      ? "#A3A7EF" // 選択された行の色
+                      ? "#A3A7EF"
                       : index % 2 === 0
-                      ? "lightgray" // 未選択の偶数行の色
+                      ? "lightgray"
                       : "transparent",
                   cursor: "pointer",
                 }}
@@ -117,9 +130,9 @@ const Page = () => {
                 <Td>
                   <Button
                     style={{
-                      backgroundColor: "#6064df", // ボタンの背景色
-                      color: "white", // ボタンの文字色
-                      padding: "5px 10px", // ボタン内のパディング
+                      backgroundColor: "#6064df",
+                      color: "white",
+                      padding: "5px 10px",
                     }}
                     onClick={() => {
                       handleRemove(row.id);
@@ -148,7 +161,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default HomePage;
 
 const tdStyle: React.CSSProperties = {
   padding: "10px",
@@ -158,10 +171,10 @@ const tdStyle: React.CSSProperties = {
 };
 
 const memoStyle: React.CSSProperties = {
-  ...tdStyle, // tdStyleのスタイルを継承
-  maxWidth: 500, // 最大幅を設定
-  whiteSpace: "normal", // テキストを折り返す
-  wordWrap: "break-word", // 単語が長すぎる場合は単語内で折り返す
-  overflow: "hidden", // コンテンツがオーバーフローした場合に非表示にする
-  textOverflow: "ellipsis", // オーバーフローしたテキストを省略記号で表す
+  ...tdStyle,
+  maxWidth: 500,
+  whiteSpace: "normal",
+  wordWrap: "break-word",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 };
