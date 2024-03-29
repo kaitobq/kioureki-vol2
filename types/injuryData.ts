@@ -6,5 +6,5 @@ export type injuryData = {
   category: string;
   memo: string;
   date: Date;
-  organizationId: string;
+  // organizationId: string;
 };
