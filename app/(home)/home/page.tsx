@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { fetchData, removeData } from "@/lib/supabaseFunctions";
-import { useOrganization } from "@clerk/nextjs";
+import { CreateOrganization, useOrganization } from "@clerk/nextjs";
 import {
   Box,
   Button,
+  Text,
   TableContainer,
   NativeTable,
   Thead,
@@ -62,6 +63,19 @@ const HomePage = () => {
   const handleSelectRow = (id: any) => {
     setSelectedRow(id);
   };
+
+  if (!organization) {
+    return (
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <Text fontSize={20} textAlign="center">
+          初めての方は団体に参加する必要があります。
+          <br />
+          既存ユーザからの招待を受けるか、新しい団体を作成してください。
+        </Text>
+        <CreateOrganization />
+      </Box>
+    );
+  }
 
   if (loading) {
     return <LoadingPage />;
