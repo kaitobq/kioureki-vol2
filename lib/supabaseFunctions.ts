@@ -16,7 +16,14 @@ export const fetchData = async (tableName: string, organizationId: string) => {
 export const addData = async (
   tableName: string,
   organizationId: string,
-  newData: object
+  newData: {
+    name: string;
+    part: string;
+    diagnosis: string;
+    category: string;
+    memo: string;
+    date: Date;
+  }
 ) => {
   try {
     const dataWithOrganizationId = {
