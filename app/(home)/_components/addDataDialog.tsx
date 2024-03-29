@@ -21,8 +21,6 @@ const AddDataDialog = (props: Props) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   const handleSubmit = async (e: any) => {
-    // e.preventDefault(); // フォームのデフォルト送信を防ぐ
-    // addToDatabase 関数を呼び出してデータを追加
     if (name === "" || part === "" || diagnosis === "" || category === "") {
       alert("全ての必須フィールドを入力してください。");
       return;
@@ -48,11 +46,10 @@ const AddDataDialog = (props: Props) => {
       setCategory("");
       setMemo("");
       setDate(new Date());
-      props.onClose(); // データ追加に成功したらダイアログを閉じる
+      props.onClose();
       props.reloadData();
     } catch (error) {
       console.error("データ追加エラー:", error);
-      // エラーハンドリング（ユーザーに通知するなど）
     }
   };
 
@@ -67,52 +64,44 @@ const AddDataDialog = (props: Props) => {
       onSuccess={handleSubmit}
     >
       <VStack as="form">
-        <FormControl label="Name" isRequired>
+        <FormControl label="名前" isRequired>
           <Input
             defaultValue={name}
-            placeholder="Name"
+            placeholder="名前"
             onChange={(e) => setName(e.target.value)}
           />
         </FormControl>
-        <FormControl label="Part" isRequired>
+        <FormControl label="部位" isRequired>
           <Input
             defaultValue={part}
-            placeholder="Part"
+            placeholder="部位"
             onChange={(e) => setPart(e.target.value)}
           />
         </FormControl>
-        <FormControl label="Diagnosis" isRequired>
+        <FormControl label="診断" isRequired>
           <Input
             defaultValue={diagnosis}
-            placeholder="Diagnosis"
+            placeholder="診断"
             onChange={(e) => setDiagnosis(e.target.value)}
           />
         </FormControl>
-        <FormControl label="Category" isRequired>
+        <FormControl label="カテゴリ" isRequired>
           <Input
             defaultValue={category}
-            placeholder="Category"
+            placeholder="カテゴリ"
             onChange={(e) => setCategory(e.target.value)}
           />
         </FormControl>
-        <FormControl label="Memo">
+        <FormControl label="備考">
           <Textarea
             defaultValue={memo}
-            placeholder="Memo"
+            placeholder="備考"
             onChange={(e) => setMemo(e.target.value)}
           />
         </FormControl>
-        <FormControl label="Date" isRequired>
+        <FormControl label="日付" isRequired>
           <DatePicker
-            // defaultValue={date}
             value={date}
-            placement="top"
-            // parseDate={(value) => {
-            //   const newDate = new Date(value);
-            //   console.log(value, "!");
-            //   setDate(newDate);
-            //   return newDate;
-            // }}
             onChange={setDate}
             onClick={() => {
               console.log(date);
