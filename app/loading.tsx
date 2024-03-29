@@ -9,7 +9,7 @@ const LoadingPage = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <Loading variant="circles" size="8xl" color="blue.500" />
+      <Loading variant="rings" size="8xl" color="blue.400" />
     </Box>
   );
 };
