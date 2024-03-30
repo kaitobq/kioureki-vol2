@@ -31,7 +31,7 @@ export const addData = async (
       organizationId: organizationId,
     };
     console.log(newData.date);
-    await supabase.from(tableName).insert([dataWithOrganizationId]);
+    await supabase.from(tableName).insert([dataWithOrganizationId] as never);
   } catch (error) {
     console.error("データ追加エラー:", error);
     return null;
@@ -59,7 +59,7 @@ export const updateData = async (
       category: newData.category,
       memo: newData.memo,
       date: newData.date,
-    })
+    } as never)
     .eq("id", dataId);
 
   if (error) {
