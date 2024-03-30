@@ -1,13 +1,26 @@
 "use client";
 
-import { OrganizationSwitcher, UserButton, useClerk } from "@clerk/nextjs";
-import { Box, Button } from "@yamada-ui/react";
+import {
+  OrganizationSwitcher,
+  UserButton,
+  useClerk,
+  useOrganization,
+} from "@clerk/nextjs";
+import { Box, Button, useBreakpoint } from "@yamada-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { signOut } = useClerk();
+  const { organization } = useOrganization();
   const router = useRouter();
+  const breakpoint = useBreakpoint();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    setIsSmallScreen(breakpoint === "sm");
+  }, [breakpoint]);
 
   return (
     <Box
@@ -30,30 +43,40 @@ const Header = () => {
         mx={5}
         justifyContent="space-between"
       >
-        {/* organizationがないときは非表示にしたい */}
-        <OrganizationSwitcher
-          hidePersonal
-          // afterCreateOrganizationUrl="/organization/:id"
-          // afterLeaveOrganizationUrl="/select-org"
-          // afterSelectOrganizationUrl="/organization/:id"
-          appearance={{
-            elements: {
-              rootBox: {
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+        {organization && (
+          <OrganizationSwitcher
+            hidePersonal
+            // afterCreateOrganizationUrl="/organization/:id"
+            // afterLeaveOrganizationUrl="/select-org"
+            // afterSelectOrganizationUrl="/organization/:id"
+            appearance={{
+              elements: {
+                rootBox: {
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
               },
-            },
-          }}
-        />
-        <Button
-          onClick={() => signOut(() => router.push("/"))}
-          variant="outline"
-          color="white"
-          sx={{ mx: 5, "&:hover": { color: "black" }, transition: "0.3s" }}
-        >
-          sign out
-        </Button>
+            }}
+          />
+        )}
+        {/* organizationがないときは非表示にしたい */}
+
+        {!isSmallScreen && (
+          <Button
+            onClick={() => signOut(() => router.push("/"))}
+            variant="outline"
+            color="white"
+            sx={{
+              mx: 5,
+              "&:hover": { color: "black" },
+              transition: "0.3s",
+            }}
+          >
+            sign out
+          </Button>
+        )}
+
         <UserButton afterSignOutUrl="/" />
       </Box>
     </Box>
