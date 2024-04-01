@@ -73,7 +73,7 @@ const HomePage = () => {
     setSelectedRow(id);
   };
 
-  if (!organization) {
+  if (!organization || !organization.id) {
     return (
       <Box display="flex" flexDirection="column" alignItems="center">
         <Text fontSize={20} textAlign="center">
