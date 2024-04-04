@@ -2,20 +2,13 @@ import { Dialog, FormControl, Input, Textarea, VStack } from "@yamada-ui/react";
 import { DatePicker } from "@yamada-ui/calendar";
 import { useEffect, useState } from "react";
 import { updateData } from "@/lib/supabaseFunctions";
+import { injuryData } from "@/types/injuryData";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   reloadData: any;
-  prevData: {
-    id: string;
-    name: string;
-    part: string;
-    diagnosis: string;
-    category: string;
-    memo: string;
-    date: Date;
-  } | null;
+  prevData: injuryData | null;
 };
 
 const UpdateDataDialog = (props: Props) => {
@@ -80,39 +73,39 @@ const UpdateDataDialog = (props: Props) => {
           <Input
             value={name}
             placeholder="名前"
-            onChange={(e) => setName(e.target.value)}
+            onBlur={(e) => setName(e.target.value)}
           />
         </FormControl>
         <FormControl label="部位" isRequired>
           <Input
             value={part}
             placeholder="部位"
-            onChange={(e) => setPart(e.target.value)}
+            onBlur={(e) => setPart(e.target.value)}
           />
         </FormControl>
         <FormControl label="診断" isRequired>
           <Input
             value={diagnosis}
             placeholder="診断"
-            onChange={(e) => setDiagnosis(e.target.value)}
+            onBlur={(e) => setDiagnosis(e.target.value)}
           />
         </FormControl>
         <FormControl label="カテゴリ" isRequired>
           <Input
             value={category}
             placeholder="カテゴリ"
-            onChange={(e) => setCategory(e.target.value)}
+            onBlur={(e) => setCategory(e.target.value)}
           />
         </FormControl>
         <FormControl label="備考">
           <Textarea
             value={memo}
             placeholder="備考"
-            onChange={(e) => setMemo(e.target.value)}
+            onBlur={(e) => setMemo(e.target.value)}
           />
         </FormControl>
         <FormControl label="日付" isRequired>
-          <DatePicker value={date} onChange={setDate} />
+          <DatePicker value={date} onChange={setDate} placement="top" />
         </FormControl>
       </VStack>
     </Dialog>

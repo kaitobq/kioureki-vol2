@@ -30,7 +30,13 @@ const AddDataDialog = (props: Props) => {
       console.error("organizationId is undefined.");
       return;
     }
-    date?.setDate(date.getDate() + 1);
+
+    // DatePickerで日付を選んだ時にのみ日付がずれるのを解消
+    const currentDate = new Date();
+    if (date?.getDate() !== currentDate.getDate()) {
+      date?.setDate(date.getDate() + 1);
+    }
+
     try {
       await addData("Injuries", props.organizationId, {
         name,
@@ -68,45 +74,39 @@ const AddDataDialog = (props: Props) => {
           <Input
             defaultValue={name}
             placeholder="名前"
-            onChange={(e) => setName(e.target.value)}
+            onBlur={(e) => setName(e.target.value)}
           />
         </FormControl>
         <FormControl label="部位" isRequired>
           <Input
             defaultValue={part}
             placeholder="部位"
-            onChange={(e) => setPart(e.target.value)}
+            onBlur={(e) => setPart(e.target.value)}
           />
         </FormControl>
         <FormControl label="診断" isRequired>
           <Input
             defaultValue={diagnosis}
             placeholder="診断"
-            onChange={(e) => setDiagnosis(e.target.value)}
+            onBlur={(e) => setDiagnosis(e.target.value)}
           />
         </FormControl>
         <FormControl label="カテゴリ" isRequired>
           <Input
             defaultValue={category}
             placeholder="カテゴリ"
-            onChange={(e) => setCategory(e.target.value)}
+            onBlur={(e) => setCategory(e.target.value)}
           />
         </FormControl>
         <FormControl label="備考">
           <Textarea
             defaultValue={memo}
             placeholder="備考"
-            onChange={(e) => setMemo(e.target.value)}
+            onBlur={(e) => setMemo(e.target.value)}
           />
         </FormControl>
         <FormControl label="日付" isRequired>
-          <DatePicker
-            value={date}
-            onChange={setDate}
-            onClick={() => {
-              console.log(date);
-            }}
-          />
+          <DatePicker value={date} onChange={setDate} placement="top" />
         </FormControl>
       </VStack>
     </Dialog>
