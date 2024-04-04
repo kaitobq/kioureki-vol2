@@ -23,16 +23,7 @@ import LoadingPage from "@/app/loading";
 import UpdateDataDialog from "../_components/updateDataDialog";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-
-type injuryData = {
-  id: string;
-  name: string;
-  part: string;
-  diagnosis: string;
-  category: string;
-  memo: string;
-  date: Date;
-};
+import { injuryData } from "@/types/injuryData";
 
 const HomePage = () => {
   const { organization } = useOrganization();
