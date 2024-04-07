@@ -71,35 +71,35 @@ const UpdateDataDialog = (props: Props) => {
       <VStack as="form">
         <FormControl label="名前" isRequired>
           <Input
-            value={name}
+            defaultValue={name}
             placeholder="名前"
             onBlur={(e) => setName(e.target.value)}
           />
         </FormControl>
         <FormControl label="部位" isRequired>
           <Input
-            value={part}
+            defaultValue={part}
             placeholder="部位"
             onBlur={(e) => setPart(e.target.value)}
           />
         </FormControl>
         <FormControl label="診断" isRequired>
           <Input
-            value={diagnosis}
+            defaultValue={diagnosis}
             placeholder="診断"
             onBlur={(e) => setDiagnosis(e.target.value)}
           />
         </FormControl>
         <FormControl label="カテゴリ" isRequired>
           <Input
-            value={category}
+            defaultValue={category}
             placeholder="カテゴリ"
             onBlur={(e) => setCategory(e.target.value)}
           />
         </FormControl>
         <FormControl label="備考">
           <Textarea
-            value={memo}
+            defaultValue={memo}
             placeholder="備考"
             onBlur={(e) => setMemo(e.target.value)}
           />
